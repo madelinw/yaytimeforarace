@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Yay__Time_for_a_race_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,120 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="When is it?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s8-mv-PNT">
+                                <rect key="frame" x="258" y="108" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vzc-N7-Yoc">
+                                <rect key="frame" x="0.0" y="346" width="600" height="216"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Let's do it." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ag0-f1-CCF">
+                                <rect key="frame" x="261" y="392" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="qkn-2s-ZDw">
+                                <rect key="frame" x="0.0" y="142" width="600" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="491018294.312446">
+                                    <!--2016-07-24 01:58:14 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="490960800">
+                                    <!--2016-07-23 10:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Yay! Time for a race." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsq-FC-zjv">
+                                <rect key="frame" x="149" y="40" width="302" height="49"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose your destiny." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0V-FF-ue7">
+                                <rect key="frame" x="220" y="373" width="161" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28r-Zq-K5o">
+                                <rect key="frame" x="261" y="562" width="79" height="30"/>
+                                <state key="normal" title="Ready, set?"/>
+                                <connections>
+                                    <action selector="touchDownButton:" destination="BYZ-38-t0r" eventType="touchDown" id="BeD-rM-S6j"/>
+                                    <action selector="touchUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SCd-5U-n4K"/>
+                                    <segue destination="nkB-P9-fLJ" kind="custom" customClass="SegueFromLeft" customModule="Yay__Time_for_a_race_" customModuleProvider="target" id="6U4-ku-83Q"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8e5-eW-daT"/>
+                            <constraint firstItem="3s8-mv-PNT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9zQ-1P-L1H"/>
+                            <constraint firstItem="U0V-FF-ue7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RGF-so-1A5"/>
+                            <constraint firstItem="Nsq-FC-zjv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YIm-fJ-yu3"/>
+                            <constraint firstItem="qkn-2s-ZDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kqP-GY-kjh"/>
+                            <constraint firstItem="ag0-f1-CCF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nH4-Z7-lRU"/>
+                            <constraint firstItem="28r-Zq-K5o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tXT-7a-UhW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="destinyLabel" destination="ag0-f1-CCF" id="gp3-b7-RdH"/>
+                        <outlet property="destinyPicker" destination="vzc-N7-Yoc" id="euA-zM-Yk5"/>
+                        <outlet property="goButton" destination="28r-Zq-K5o" id="awp-q0-UMf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131" y="366"/>
+        </scene>
+        <!--Calendar View Controller-->
+        <scene sceneID="5GJ-jF-cZs">
+            <objects>
+                <viewController id="nkB-P9-fLJ" customClass="CalendarViewController" customModule="Yay__Time_for_a_race_" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FOm-wc-ntS"/>
+                        <viewControllerLayoutGuide type="bottom" id="n7I-I1-2UM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qes-8a-Du6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="12 Weeks!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60P-ID-YPd">
+                                <rect key="frame" x="261" y="55" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="This Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NU-Fl-iBG">
+                                <rect key="frame" x="260" y="246" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Countdown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YR9-97-e5V">
+                                <rect key="frame" x="256" y="92" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="R3f-vi-8SX">
+                                <rect key="frame" x="281" y="524" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YR9-97-e5V" firstAttribute="centerX" secondItem="qes-8a-Du6" secondAttribute="centerX" id="5NN-7P-rK4"/>
+                            <constraint firstItem="R3f-vi-8SX" firstAttribute="centerX" secondItem="qes-8a-Du6" secondAttribute="centerX" id="Vpe-pm-dX9"/>
+                            <constraint firstItem="6NU-Fl-iBG" firstAttribute="centerX" secondItem="qes-8a-Du6" secondAttribute="centerX" id="hlM-IE-JEB"/>
+                            <constraint firstItem="60P-ID-YPd" firstAttribute="centerX" secondItem="qes-8a-Du6" secondAttribute="centerX" id="vOr-YG-WLl"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wym-kK-DFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781" y="366"/>
         </scene>
     </scenes>
 </document>
