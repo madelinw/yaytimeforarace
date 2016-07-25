@@ -22,7 +22,20 @@ class CalendarViewController: UIViewController {
     let calendarData = CalendarData.calendarInstance
     var weeksFromDate : Int = 0
     
-    var schedule : [[Double]] = []
+    var halfNewbie : [[Double]] = []
+    var halfGentle : [[Double]] = []
+    var halfEndurance : [[Double]] = []
+    var halfSpeed : [[Double]] = []
+    //var halfExtreme : [[Double]] = []
+    //var fullNewbie : [[Double]] = []
+    //var fullGentle : [[Double]] = []
+    //var fullEndurance : [[Double]] = []
+    //var fullSpeed : [[Double]] = []
+    //var fullExtreme : [[Double]] = []
+    
+    //var schedule : [[Double]] = []
+    var schedule : [String: [String : [[Double]]]] = [:]
+    
     var currentWeek : [Double] = []
     var weekInSchedule : Int = 0
     var weekLabels : [UILabel] = []
@@ -38,12 +51,72 @@ class CalendarViewController: UIViewController {
         let weekDay = myComponents.weekday
         return weekDay
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.schedule = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
+        self.halfNewbie = [[0,3,2,3,0,30,4],
+                           [0,3,2,3,0,30,4],
+                           [0,3.5,2,3.5,0,40,5],
+                           [0,3.5,2,3.5,0,40,5],
+                           [0,4,2,4,0,40,6],
+                           [0,4,2,4,0,0,3.1],
+                           [0,4.5,3,4.5,0,50,7],
+                           [0,4.5,3,4.5,0,50,8],
+                           [0,5,3,5,0,0,6.2],
+                           [0,5,3,5,0,60,9],
+                           [0,5,3,5,0,60,10],
+                           [0,4,3,2,0,0,13.1]]
+        self.halfGentle = [[0,3,3,3,0,4,60],
+                           [0,3,3,3,0,5,60],
+                           [0,3,4,3,0,6,60],
+                           [0,3,4,3,0,7,60],
+                           [0,3,4,3,0,8,60],
+                           [0,3,4,3,0,3.1,60],
+                           [0,3,5,3,0,9,60],
+                           [0,3,5,3,0,10,60],
+                           [0,3,5,3,0,6.2,60],
+                           [0,3,5,3,0,11,60],
+                           [0,3,5,3,0,12,60],
+                           [0,3,2,2,0,0,13.1]]
+        self.halfEndurance = [[30,3,4,3,0,3,4],
+                              [30,3,4,3,0,3,5],
+                              [40,3.5,5,3.5,0,0,6],
+                              [40,3.5,5,3.5,0,3,7],
+                              [40,4,6,4,0,3,8],
+                              [50,4,6,4,0,0,3.1],
+                              [0,4.5,7,4.5,0,4,9],
+                              [50,4.5,7,4.5,0,5,10],
+                              [60,5,8,5,0,0,6.2],
+                              [0,5,8,5,0,5,11],
+                              [60,5,6,4,0,3,12],
+                              [0,4,4,2,0,0,13.1]]
+        self.halfSpeed = [[30,3,5.400,3,0,3,5],
+                          [30,3,30.9,3,0,3,6],
+                          [40,3.5,6.400,3,0,0,3.1],
+                          [40,3.5,35.9,3,0,3,7],
+                          [40,4,7.400,3,0,3,8],
+                          [50,4,40.9,3,0,0,6.2],
+                          [0, 4.5,8.400,3,0,4,9],
+                          [50,4.5,40.9,3,0,5,10],
+                          [60,5,9.400,3,0,0,9.32],
+                          [0, 5,45.9,3,0,5,11],
+                          [60,5,10.400,3,0,3,12],
+                          [0, 4,30.9,2,0,0,13.1]]
+        //self.halfExtreme = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
+
+        //self.fullNewbie = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,26.2]]
+        //self.fullGentle = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
+        //self.fullEndurance = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
+        //self.fullSpeed = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
+        //self.fullExtreme = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
+
+        self.schedule = [
+            "Half": ["Newbie": self.halfNewbie, "Gentle": self.halfGentle, "Endurance": self.halfEndurance, "Speed": self.halfSpeed]
+        ]
+        
+        
+        //self.schedule = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
         self.weeksFromDate = self.weeksFrom(self.calendarData.timeToRace)
         
         if ((12 - self.weeksFromDate) <= 12 && (12 - self.weeksFromDate) >= 0) {
@@ -53,9 +126,11 @@ class CalendarViewController: UIViewController {
         }
         
         let currentDay = getDayOfWeek()
-
         
-        self.currentWeek = self.schedule[weekInSchedule]
+        self.currentWeek = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]![weekInSchedule]
+        
+        
+        //self.currentWeek = self.schedule[weekInSchedule]
 
         weekCountdownLabel.text = "\(self.weeksFromDate) Weeks Away!"
         
@@ -74,6 +149,8 @@ class CalendarViewController: UIViewController {
         print(self.calendarData.timeToRace)
         print(self.weeksFromDate)
         print(currentDay)
+        print(self.calendarData.howFar)
+        print(self.calendarData.howPro)
 
         // Do any additional setup after loading the view.
     }

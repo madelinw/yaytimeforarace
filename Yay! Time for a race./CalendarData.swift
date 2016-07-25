@@ -18,10 +18,11 @@ class CalendarData {
         dispatch_once(&Static.token) {
             Static.instance = CalendarData()
         }
-        
         return Static.instance!
     }
     
     var timeToRace : NSDate!
+    var howFar : String!
+    var howPro : String!
     
 }

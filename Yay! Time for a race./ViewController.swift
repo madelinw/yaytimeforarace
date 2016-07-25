@@ -11,10 +11,14 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let pickerData = [
-        ["Half","Full"],
-        ["Newbie","Gentle","Endurance","Speed","Extreme"]
+        ["Half"], //,"Full"],
+        ["Newbie","Gentle","Endurance","Speed"] //,"Extreme"]
     ]
     let calendarData = CalendarData.calendarInstance
+    var farComponent : Int = 0
+    var proComponent : Int = 0
+    var far : String = ""
+    var pro : String = ""
     
     enum PickerComponent:Int {
         case far = 0
@@ -29,17 +33,23 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func touchDownButton(sender: AnyObject) {
         goButton.setTitle("Go!", forState: .Normal)
         self.calendarData.timeToRace = self.datePicker.date
+        self.setPickerVariables()
+        self.calendarData.howFar = self.far
+        self.calendarData.howPro = self.pro
     }
     @IBAction func touchUpButton(sender: AnyObject) {
         
     }
     
+    func setPickerVariables() {
+        farComponent = PickerComponent.far.rawValue
+        proComponent = PickerComponent.pro.rawValue
+        far = pickerData[farComponent][destinyPicker.selectedRowInComponent(farComponent)]
+        pro = pickerData[proComponent][destinyPicker.selectedRowInComponent(proComponent)]
+    }
     
     func updateLabel(){
-        var farComponent = PickerComponent.far.rawValue
-        let proComponent = PickerComponent.pro.rawValue
-        let far = pickerData[farComponent][destinyPicker.selectedRowInComponent(farComponent)]
-        let pro = pickerData[proComponent][destinyPicker.selectedRowInComponent(proComponent)]
+        self.setPickerVariables()
         destinyLabel.text = far + " marathon — " + pro + " level"
     }
     
