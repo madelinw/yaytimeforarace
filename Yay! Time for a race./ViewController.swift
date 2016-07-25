@@ -14,18 +14,21 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         ["Half","Full"],
         ["Newbie","Gentle","Endurance","Speed","Extreme"]
     ]
+    let calendarData = CalendarData.calendarInstance
     
     enum PickerComponent:Int {
         case far = 0
         case pro = 1
     }
 
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var destinyLabel: UILabel!
     @IBOutlet weak var destinyPicker: UIPickerView!
     @IBOutlet weak var goButton: UIButton!
 
     @IBAction func touchDownButton(sender: AnyObject) {
         goButton.setTitle("Go!", forState: .Normal)
+        self.calendarData.timeToRace = self.datePicker.date
     }
     @IBAction func touchUpButton(sender: AnyObject) {
         

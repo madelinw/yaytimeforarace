@@ -14,6 +14,7 @@
 		9B118F0E1D4457FF00FB5485 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B118F0C1D4457FF00FB5485 /* LaunchScreen.storyboard */; };
 		9B118F161D4473BE00FB5485 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B118F151D4473BE00FB5485 /* CalendarViewController.swift */; };
 		9B118F181D44768000FB5485 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B118F171D44768000FB5485 /* SegueFromLeft.swift */; };
+		9B21F6411D4532F500B5F20C /* CalendarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B21F6401D4532F500B5F20C /* CalendarData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9B118F0F1D4457FF00FB5485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B118F151D4473BE00FB5485 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9B118F171D44768000FB5485 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
+		9B21F6401D4532F500B5F20C /* CalendarData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				9B118F051D4457FF00FB5485 /* ViewController.swift */,
 				9B118F071D4457FF00FB5485 /* Main.storyboard */,
 				9B118F151D4473BE00FB5485 /* CalendarViewController.swift */,
+				9B21F6401D4532F500B5F20C /* CalendarData.swift */,
 				9B118F171D44768000FB5485 /* SegueFromLeft.swift */,
 				9B118F0A1D4457FF00FB5485 /* Assets.xcassets */,
 				9B118F0C1D4457FF00FB5485 /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			files = (
 				9B118F161D4473BE00FB5485 /* CalendarViewController.swift in Sources */,
 				9B118F061D4457FF00FB5485 /* ViewController.swift in Sources */,
+				9B21F6411D4532F500B5F20C /* CalendarData.swift in Sources */,
 				9B118F181D44768000FB5485 /* SegueFromLeft.swift in Sources */,
 				9B118F041D4457FF00FB5485 /* AppDelegate.swift in Sources */,
 			);
@@ -294,6 +298,7 @@
 				9B118F141D4457FF00FB5485 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
