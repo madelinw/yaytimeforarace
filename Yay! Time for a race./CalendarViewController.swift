@@ -146,18 +146,15 @@ class CalendarViewController: UIViewController {
         weekCountdownLabel.text = "\(self.weeksFromDate) Weeks Away!"
         currentWeekLabel.text = "Week \(12 - self.weeksFromDate) of training"
         
-        mondayLabel.text    = String(format:"%g",self.currentWeek[0])
-        tuesdayLabel.text    = String(format:"%g",self.currentWeek[1])
-        wednesdayLabel.text   = String(format:"%g",self.currentWeek[2])
-        thursdayLabel.text = String(format:"%g",self.currentWeek[3])
-        fridayLabel.text  = String(format:"%g",self.currentWeek[4])
-        saturdayLabel.text    = String(format:"%g",self.currentWeek[5])
-        sundayLabel.text  = String(format:"%g",self.currentWeek[6])
-        
         self.weekLabels = [mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel, saturdayLabel, sundayLabel]
         self.weekCaptions = [mondayCaption, tuesdayCaption, wednesdayCaption, thursdayCaption, fridayCaption, saturdayCaption, sundayCaption]
         
         for (index, caption) in self.weekLabels.enumerate() {
+            
+            // Format training schedule miles into a string, strip extra 0's
+            self.weekLabels[index].text = String(format:"%g",self.currentWeek[index])
+            
+            // Specify & format caption for various numbers in schedule
             switch caption.text {
             case "0"?:
                 self.weekLabels[index].text = "rest"
