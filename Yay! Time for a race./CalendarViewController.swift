@@ -11,13 +11,21 @@ import UIKit
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var weekCountdownLabel: UILabel!
-    @IBOutlet weak var sundayLabel: UILabel!
     @IBOutlet weak var mondayLabel: UILabel!
     @IBOutlet weak var tuesdayLabel: UILabel!
     @IBOutlet weak var wednesdayLabel: UILabel!
     @IBOutlet weak var thursdayLabel: UILabel!
     @IBOutlet weak var fridayLabel: UILabel!
     @IBOutlet weak var saturdayLabel: UILabel!
+    @IBOutlet weak var sundayLabel: UILabel!
+    
+    @IBOutlet weak var mondayCaption: UILabel!
+    @IBOutlet weak var tuesdayCaption: UILabel!
+    @IBOutlet weak var wednesdayCaption: UILabel!
+    @IBOutlet weak var thursdayCaption: UILabel!
+    @IBOutlet weak var fridayCaption: UILabel!
+    @IBOutlet weak var saturdayCaption: UILabel!
+    @IBOutlet weak var sundayCaption: UILabel!
     
     let calendarData = CalendarData.calendarInstance
     var weeksFromDate : Int = 0
@@ -39,6 +47,7 @@ class CalendarViewController: UIViewController {
     var currentWeek : [Double] = []
     var weekInSchedule : Int = 0
     var weekLabels : [UILabel] = []
+    var weekCaptions : [UILabel] = []
     
     func weeksFrom(date : NSDate) -> Int {
         return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: NSDate(), toDate: date, options: []).weekOfYear
@@ -91,17 +100,17 @@ class CalendarViewController: UIViewController {
                               [0,5,8,5,0,5,11],
                               [60,5,6,4,0,3,12],
                               [0,4,4,2,0,0,13.1]]
-        self.halfSpeed = [[30,3,5.400,3,0,3,5],
+        self.halfSpeed = [[30,3,5.4001,3,0,3,5],
                           [30,3,30.9,3,0,3,6],
-                          [40,3.5,6.400,3,0,0,3.1],
+                          [40,3.5,6.4001,3,0,0,3.1],
                           [40,3.5,35.9,3,0,3,7],
-                          [40,4,7.400,3,0,3,8],
+                          [40,4,7.4001,3,0,3,8],
                           [50,4,40.9,3,0,0,6.2],
-                          [0, 4.5,8.400,3,0,4,9],
+                          [0, 4.5,8.4001,3,0,4,9],
                           [50,4.5,40.9,3,0,5,10],
-                          [60,5,9.400,3,0,0,9.32],
+                          [60,5,9.4001,3,0,0,9.32],
                           [0, 5,45.9,3,0,5,11],
-                          [60,5,10.400,3,0,3,12],
+                          [60,5,10.4001,3,0,3,12],
                           [0, 4,30.9,2,0,0,13.1]]
         //self.halfExtreme = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
 
@@ -134,15 +143,38 @@ class CalendarViewController: UIViewController {
 
         weekCountdownLabel.text = "\(self.weeksFromDate) Weeks Away!"
         
-        sundayLabel.text    = String(format:"%g",self.currentWeek[0])
-        mondayLabel.text    = String(format:"%g",self.currentWeek[1])
-        tuesdayLabel.text   = String(format:"%g",self.currentWeek[2])
-        wednesdayLabel.text = String(format:"%g",self.currentWeek[3])
-        thursdayLabel.text  = String(format:"%g",self.currentWeek[4])
-        fridayLabel.text    = String(format:"%g",self.currentWeek[5])
-        saturdayLabel.text  = String(format:"%g",self.currentWeek[6])
+        mondayLabel.text    = String(format:"%g",self.currentWeek[0])
+        tuesdayLabel.text    = String(format:"%g",self.currentWeek[1])
+        wednesdayLabel.text   = String(format:"%g",self.currentWeek[2])
+        thursdayLabel.text = String(format:"%g",self.currentWeek[3])
+        fridayLabel.text  = String(format:"%g",self.currentWeek[4])
+        saturdayLabel.text    = String(format:"%g",self.currentWeek[5])
+        sundayLabel.text  = String(format:"%g",self.currentWeek[6])
         
-        self.weekLabels = [sundayLabel, mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel, saturdayLabel]
+        self.weekLabels = [mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel, saturdayLabel, sundayLabel]
+        self.weekCaptions = [mondayCaption, tuesdayCaption, wednesdayCaption, thursdayCaption, fridayCaption, saturdayCaption, sundayCaption]
+        
+        for (index, caption) in self.weekLabels.enumerate() {
+            switch caption.text {
+            case "0"?:
+                self.weekLabels[index].text = "rest"
+                self.weekLabels[index].textColor = UIColor.grayColor()
+                self.weekCaptions[index].text = ""
+            case "30"?, "40"?, "50"?, "60"?:
+                self.weekCaptions[index].text = "cross"
+            case "5.4001"?, "6.4001"?, "7.4001"?, "8.4001"?, "9.4001"?, "10.4001"?:
+                self.weekLabels[index].text = self.weekLabels[index].text!.componentsSeparatedByString(".")[0]
+                self.weekCaptions[index].text = "x400\n" + "5k pace"
+            case "30.9"?, "35"?, "40"?, "45"?:
+                self.weekLabels[index].text = self.weekLabels[index].text!.componentsSeparatedByString(".")[0]
+                self.weekCaptions[index].text = "min tempo"
+            case "3.1"?, "6.2"?, "9.32"?, "13.1"?, "26.2"?:
+                self.weekCaptions[index].text = "race!"
+            default:
+                self.weekCaptions[index].text = "miles"
+            }
+        }
+        
         
         self.weekLabels[getDayOfWeek() - 1].textColor = UIColor.redColor()
         
