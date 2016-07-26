@@ -31,7 +31,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var goButton: UIButton!
 
     @IBAction func touchDownButton(sender: AnyObject) {
+        // Change button text from "Ready, set" to "Go!"
         goButton.setTitle("Go!", forState: .Normal)
+        
+        // Update data passed to calendarData according to what's been selected
         self.calendarData.timeToRace = self.datePicker.date
         self.setPickerVariables()
         self.calendarData.howFar = self.far
@@ -49,17 +52,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func updateLabel(){
+        // Show current selection in a fancy helper label
         self.setPickerVariables()
         destinyLabel.text = far + " marathon — " + pro + " level"
     }
-    
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        destinyPicker.delegate = self
-        destinyPicker.dataSource = self
-        
+        // Set picker options based on data from calendarData
         destinyPicker.delegate = self
         destinyPicker.dataSource = self
         

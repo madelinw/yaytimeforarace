@@ -36,14 +36,7 @@ class CalendarViewController: UIViewController {
     var halfGentle : [[Double]] = []
     var halfEndurance : [[Double]] = []
     var halfSpeed : [[Double]] = []
-    //var halfExtreme : [[Double]] = []
-    //var fullNewbie : [[Double]] = []
-    //var fullGentle : [[Double]] = []
-    //var fullEndurance : [[Double]] = []
-    //var fullSpeed : [[Double]] = []
-    //var fullExtreme : [[Double]] = []
     
-    //var schedule : [[Double]] = []
     var schedule : [String: [String : [[Double]]]] = [:]
     
     var currentWeek : [Double] = []
@@ -60,12 +53,23 @@ class CalendarViewController: UIViewController {
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let myComponents = myCalendar!.components(.Weekday, fromDate: todayDate)
         let weekDay = myComponents.weekday
-        return weekDay
+        return weekDay // returns a number corresponding to current week day, starting with 1 (ie, Tuesday is '3')
+    }
+    
+    // TODO: Show MM/DD after the day's label
+    func getMonthAndDay() -> String {
+        let todayDate = NSDate()
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let myComponents = myCalendar!.components([.Month, .Day], fromDate: todayDate)
+        let month = myComponents.month
+        let day = myComponents.day
+        return "\(month)/\(day)"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set training program schedules
         self.halfNewbie = [[0,3,2,3,0,30,4],
                            [0,3,2,3,0,30,4],
                            [0,3.5,2,3.5,0,40,5],
@@ -114,20 +118,12 @@ class CalendarViewController: UIViewController {
                           [0, 5,45.9,3,0,5,11],
                           [60,5,10.4001,3,0,3,12],
                           [0, 4,30.9,2,0,0,13.1]]
-        //self.halfExtreme = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
-
-        //self.fullNewbie = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,26.2]]
-        //self.fullGentle = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
-        //self.fullEndurance = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
-        //self.fullSpeed = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
-        //self.fullExtreme = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
 
         self.schedule = [
             "Half": ["Newbie": self.halfNewbie, "Gentle": self.halfGentle, "Endurance": self.halfEndurance, "Speed": self.halfSpeed]
         ]
         
-        
-        //self.schedule = [[0,3,3,3,0,4,3],[0,3,3,3,0,5,3],[0,3,4,3,0,6,3],[0,3,4,3,0,7,3],[0,3,4,3,0,8,3],[0,3,4,3,0,3.2,3],[0,3,5,3,0,9,3],[0,3,5,3,0,10,3],[0,3,5,3,0,6.4,3],[0,3,5,3,0,11,3],[0,3,5,3,0,12,3],[0,3,2,2,0,0,13.2]]
+        // Calculate how many weeks until race
         self.weeksFromDate = self.weeksFrom(self.calendarData.timeToRace)
         
         if ((12 - self.weeksFromDate) <= 12 && (12 - self.weeksFromDate) >= 0) {
@@ -136,21 +132,18 @@ class CalendarViewController: UIViewController {
             self.weekInSchedule = 0
         }
         
-        let currentDay = getDayOfWeek()
-        
+        // Get the schedule that corresponds to "this" week
         self.currentWeek = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]![weekInSchedule]
         
-        
-        //self.currentWeek = self.schedule[weekInSchedule]
-
+        // Set labels for how many weeks away, and current week
         weekCountdownLabel.text = "\(self.weeksFromDate) Weeks Away!"
         currentWeekLabel.text = "Week \(12 - self.weeksFromDate) of training"
         
+        // Formatting of schedule labels & captions
         self.weekLabels = [mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel, saturdayLabel, sundayLabel]
         self.weekCaptions = [mondayCaption, tuesdayCaption, wednesdayCaption, thursdayCaption, fridayCaption, saturdayCaption, sundayCaption]
         
         for (index, caption) in self.weekLabels.enumerate() {
-            
             // Format training schedule miles into a string, strip extra 0's
             self.weekLabels[index].text = String(format:"%g",self.currentWeek[index])
             
@@ -175,14 +168,9 @@ class CalendarViewController: UIViewController {
             }
         }
         
+        // Show today's goal in red. Note: minus two to account for index and starting the week on Monday
+        self.weekLabels[getDayOfWeek() - 2].textColor = UIColor.redColor()
         
-        self.weekLabels[getDayOfWeek() - 1].textColor = UIColor.redColor()
-        
-        print(self.calendarData.timeToRace)
-        print(self.weeksFromDate)
-        print(currentDay)
-        print(self.calendarData.howFar)
-        print(self.calendarData.howPro)
 
         // Do any additional setup after loading the view.
     }

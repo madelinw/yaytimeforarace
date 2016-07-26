@@ -21,6 +21,7 @@ class CalendarData {
         return Static.instance!
     }
     
+    // Share this data between the views
     var timeToRace : NSDate!
     var howFar : String!
     var howPro : String!
