@@ -11,6 +11,8 @@ import UIKit
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var weekCountdownLabel: UILabel!
+    @IBOutlet weak var currentWeekLabel: UILabel!
+    
     @IBOutlet weak var mondayLabel: UILabel!
     @IBOutlet weak var tuesdayLabel: UILabel!
     @IBOutlet weak var wednesdayLabel: UILabel!
@@ -142,6 +144,7 @@ class CalendarViewController: UIViewController {
         //self.currentWeek = self.schedule[weekInSchedule]
 
         weekCountdownLabel.text = "\(self.weeksFromDate) Weeks Away!"
+        currentWeekLabel.text = "Week \(12 - self.weeksFromDate) of training"
         
         mondayLabel.text    = String(format:"%g",self.currentWeek[0])
         tuesdayLabel.text    = String(format:"%g",self.currentWeek[1])
