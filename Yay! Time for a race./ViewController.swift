@@ -10,24 +10,22 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let pickerData = [
-        ["Half"], //,"Full"],
-        ["Newbie","Gentle","Endurance","Speed"] //,"Extreme"]
-    ]
+    var selectedItemsArray = []
+
+    var lengthClasses = ["5k", "Half"]
+    var fivekItems = ["Newbie", "Intermediate"]
+    var halfItems =  ["Newbie","Gentle","Endurance","Speed"]
+    
     let calendarData = CalendarData.calendarInstance
-    var farComponent : Int = 0
-    var proComponent : Int = 0
     var far : String = ""
     var pro : String = ""
-    
-    enum PickerComponent:Int {
-        case far = 0
-        case pro = 1
-    }
 
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var destinyLabel: UILabel!
-    @IBOutlet weak var destinyPicker: UIPickerView!
+    
+    @IBOutlet weak var lengthPicker: UIPickerView!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var levelPicker: UIPickerView!
+    
     @IBOutlet weak var goButton: UIButton!
 
     @IBAction func touchDownButton(sender: AnyObject) {
@@ -45,43 +43,72 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func setPickerVariables() {
-        farComponent = PickerComponent.far.rawValue
-        proComponent = PickerComponent.pro.rawValue
-        far = pickerData[farComponent][destinyPicker.selectedRowInComponent(farComponent)]
-        pro = pickerData[proComponent][destinyPicker.selectedRowInComponent(proComponent)]
+        far = lengthClasses[lengthPicker.selectedRowInComponent(0)]
+        pro = selectedItemsArray[levelPicker.selectedRowInComponent(0)] as! String
     }
     
-    func updateLabel(){
-        // Show current selection in a fancy helper label
-        self.setPickerVariables()
-        destinyLabel.text = far + " marathon — " + pro + " level"
-    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set picker options based on data from calendarData
-        destinyPicker.delegate = self
-        destinyPicker.dataSource = self
         
-        destinyPicker.selectRow(2,
-           inComponent: PickerComponent.far.rawValue,
+        // Set picker options based on data from calendarData
+        self.lengthPicker.dataSource = self
+        self.lengthPicker.delegate = self
+        self.levelPicker.dataSource = self
+        self.levelPicker.delegate = self
+
+        lengthPicker.selectRow(0,
+           inComponent: 0,
            animated: false)
-        updateLabel()
+        
+        // Default to 5k
+        selectedItemsArray = fivekItems
+        self.setPickerVariables()
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        updateLabel()
-    }
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return pickerData.count
+        return 1
+        //return lengthClasses.count
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData[component].count
+        if pickerView == lengthPicker {
+            return lengthClasses.count
+        } else if pickerView == levelPicker {
+            return selectedItemsArray.count
+        }
+        return 0
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[component][row]
+        if pickerView == lengthPicker {
+            return lengthClasses[row]
+        } else if pickerView == levelPicker {
+            return (selectedItemsArray[row] as! String)
+        }
+        return ""
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == lengthPicker {
+            switch row {
+            case 0:
+                selectedItemsArray = fivekItems
+            case 1:
+                selectedItemsArray = halfItems
+            default:
+                selectedItemsArray = fivekItems
+            }
+            // IMPORTANT reload the data on the item picker
+            levelPicker.reloadAllComponents()
+            self.setPickerVariables()
+        } else if pickerView == levelPicker {
+            // Get the current item
+            //let item = selectedItemsArray[row]
+            
+            self.setPickerVariables();
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,16 +24,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzc-N7-Yoc">
-                                <rect key="frame" x="140" y="404" width="320" height="216"/>
+                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vzc-N7-Yoc">
+                                <rect key="frame" x="299" y="352" width="161" height="216"/>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's do it." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ag0-f1-CCF">
-                                <rect key="frame" x="260" y="373" width="80" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="qkn-2s-ZDw">
+                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyH-ZH-DeP">
+                                <rect key="frame" x="140" y="352" width="146" height="216"/>
+                            </pickerView>
+                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="qkn-2s-ZDw">
                                 <rect key="frame" x="140" y="116" width="320" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="491018294.312446">
                                     <!--2016-07-24 01:58:14 +0000-->
@@ -48,13 +45,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your destiny." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0V-FF-ue7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose your destiny." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0V-FF-ue7">
                                 <rect key="frame" x="220" y="342" width="161" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28r-Zq-K5o">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28r-Zq-K5o">
                                 <rect key="frame" x="261" y="550" width="79" height="30"/>
                                 <state key="normal" title="Ready, set?"/>
                                 <connections>
@@ -66,38 +63,35 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="top" secondItem="ag0-f1-CCF" secondAttribute="bottom" constant="10" id="2x8-H7-ucb"/>
                             <constraint firstItem="Nsq-FC-zjv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BBn-cO-zkp"/>
                             <constraint firstItem="qkn-2s-ZDw" firstAttribute="top" secondItem="3s8-mv-PNT" secondAttribute="bottom" constant="10" id="Elv-IF-9tR"/>
                             <constraint firstItem="Nsq-FC-zjv" firstAttribute="top" secondItem="LPY-Mj-Dpp" secondAttribute="bottom" constant="20" id="GNn-fZ-bOb"/>
-                            <constraint firstItem="ag0-f1-CCF" firstAttribute="top" secondItem="U0V-FF-ue7" secondAttribute="bottom" constant="10" id="JW1-hK-AG3"/>
+                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="top" secondItem="qkn-2s-ZDw" secondAttribute="bottom" constant="10" id="IO7-rz-Kvc"/>
                             <constraint firstItem="qkn-2s-ZDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NVE-V8-88v"/>
                             <constraint firstItem="3s8-mv-PNT" firstAttribute="top" secondItem="Nsq-FC-zjv" secondAttribute="bottom" constant="10" id="RFv-WO-2mD"/>
                             <constraint firstItem="U0V-FF-ue7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a5Z-tn-DGM"/>
                             <constraint firstItem="3s8-mv-PNT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aGL-d7-ZvU"/>
                             <constraint firstItem="fAy-XH-E8q" firstAttribute="top" secondItem="28r-Zq-K5o" secondAttribute="bottom" constant="20" id="eqn-D5-dpo"/>
+                            <constraint firstItem="KyH-ZH-DeP" firstAttribute="top" secondItem="qkn-2s-ZDw" secondAttribute="bottom" constant="10" id="f2a-70-3ij"/>
                             <constraint firstItem="U0V-FF-ue7" firstAttribute="top" secondItem="qkn-2s-ZDw" secondAttribute="bottom" constant="10" id="h0X-PG-JF0"/>
-                            <constraint firstItem="28r-Zq-K5o" firstAttribute="top" secondItem="vzc-N7-Yoc" secondAttribute="bottom" constant="50" id="hSd-VA-tIs"/>
-                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m1J-xK-KHf"/>
+                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="leading" secondItem="KyH-ZH-DeP" secondAttribute="trailing" constant="5" id="k4W-fx-UEK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vzc-N7-Yoc" secondAttribute="trailing" id="odc-mY-uvx"/>
+                            <constraint firstItem="28r-Zq-K5o" firstAttribute="top" secondItem="U0V-FF-ue7" secondAttribute="bottom" constant="10" id="pBd-Bz-9FN"/>
                             <constraint firstItem="28r-Zq-K5o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pLO-M4-qAL"/>
-                            <constraint firstItem="ag0-f1-CCF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tr8-xR-eM2"/>
+                            <constraint firstItem="KyH-ZH-DeP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xcP-DU-FLz"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="hSd-VA-tIs"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="qkn-2s-ZDw" id="EKK-xV-vHv"/>
-                        <outlet property="destinyLabel" destination="ag0-f1-CCF" id="gp3-b7-RdH"/>
-                        <outlet property="destinyPicker" destination="vzc-N7-Yoc" id="euA-zM-Yk5"/>
                         <outlet property="goButton" destination="28r-Zq-K5o" id="awp-q0-UMf"/>
+                        <outlet property="lengthPicker" destination="KyH-ZH-DeP" id="Tcf-Wn-c80"/>
+                        <outlet property="levelLabel" destination="U0V-FF-ue7" id="4Lp-ng-fMS"/>
+                        <outlet property="levelPicker" destination="vzc-N7-Yoc" id="wEq-q6-t0b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129.375" y="365.49295774647885"/>
+            <point key="canvasLocation" x="129" y="365"/>
         </scene>
         <!--Calendar View Controller-->
         <scene sceneID="5GJ-jF-cZs">
@@ -223,7 +217,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="miles">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -236,7 +230,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="miles">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -249,7 +243,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="miles">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -262,7 +256,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="miles">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -275,7 +269,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="miles">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -288,7 +282,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="miles">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -301,7 +295,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="miles">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
