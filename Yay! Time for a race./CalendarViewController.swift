@@ -68,10 +68,8 @@ class CalendarViewController: UIViewController {
         let day = myComponents.day
         return "\(month)/\(day)"
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    func setTrainingSchedules() {
         // Set training program schedules
         self.fivekNewbie = [[0,1.5,0,1.5,0,1.5,30.5],
                             [0,1.75,0,1.5,0,1.75,35.5],
@@ -82,13 +80,13 @@ class CalendarViewController: UIViewController {
                             [0,3,0,2,0,3,60.5],
                             [0,3,0,2,0,0,3.1]]
         self.fivekIntermediate = [[0,3,5.4001,3,0,3,5],
-                                 [0,3,30,3,0,3,5],
-                                 [0,3,6.4001,3,0,4,6],
-                                 [0,3,35,3,0,0,3.1],
-                                 [0,3,7.4001,3,0,4,6],
-                                 [0.3,40,3,0,5,7],
-                                 [0,3,8.4001,3,0,5,7],
-                                 [0,3,30,2,0,0,3.1]]
+                                  [0,3,30,3,0,3,5],
+                                  [0,3,6.4001,3,0,4,6],
+                                  [0,3,35,3,0,0,3.1],
+                                  [0,3,7.4001,3,0,4,6],
+                                  [0.3,40,3,0,5,7],
+                                  [0,3,8.4001,3,0,5,7],
+                                  [0,3,30,2,0,0,3.1]]
         self.halfNewbie = [[0,3,2,3,0,30,4],
                            [0,3,2,3,0,30,4],
                            [0,3.5,2,3.5,0,40,5],
@@ -142,23 +140,30 @@ class CalendarViewController: UIViewController {
             "5k": ["Newbie": self.fivekNewbie, "Intermediate": self.fivekIntermediate],
             "Half": ["Newbie": self.halfNewbie, "Gentle": self.halfGentle, "Endurance": self.halfEndurance, "Speed": self.halfSpeed]
         ]
-        
+    }
+    
+    func calcWeeksUntilRace() {
         // Calculate how many weeks until race
         self.weeksFromDate = self.weeksFrom(self.calendarData.timeToRace)
-        
+    }
+    
+    func calcTotalTrainingWeeks() {
         // Calculate number of total training weeks
         self.numTotalWeeks = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]!.count
-
+        
         if ((self.numTotalWeeks - self.weeksFromDate) <= self.numTotalWeeks && (self.numTotalWeeks - self.weeksFromDate) > 0) {
             self.weekInSchedule = (self.numTotalWeeks - 1) - self.weeksFromDate
         } else {
             self.weekInSchedule = 0
         }
-
-        
+    }
+    
+    func calcThisWeekSchedule() {
         // Get the schedule that corresponds to "this" week
         self.currentWeek = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]![weekInSchedule]
-        
+    }
+    
+    func setLabels() {
         // Set labels for how many weeks away, and current week
         weekCountdownLabel.text = "\(self.weeksFromDate) Weeks Away!"
         currentWeekLabel.text = "Week \(self.numTotalWeeks - self.weeksFromDate) of training"
@@ -194,10 +199,22 @@ class CalendarViewController: UIViewController {
                 self.weekCaptions[index].text = "miles"
             }
         }
-        
+    }
+    
+    func setTodayLabel() {
         // Show today's goal in red. Note: minus two to account for index and starting the week on Monday
         self.weekLabels[getDayOfWeek() - 2].textColor = UIColor.redColor()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        self.setTrainingSchedules()
+        self.calcWeeksUntilRace()
+        self.calcTotalTrainingWeeks()
+        self.calcThisWeekSchedule()
+        self.setLabels()
+        self.setTodayLabel()
 
         // Do any additional setup after loading the view.
     }
