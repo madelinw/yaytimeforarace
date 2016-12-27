@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension Array {
+    // Split array into chunks of n size
+    func splitBy(subSize: Int) -> [[Element]] {
+        return 0.stride(to: self.count, by: subSize).map { startIndex in
+            let endIndex = startIndex.advancedBy(subSize, limit: self.count)
+            return Array(self[startIndex ..< endIndex])
+        }
+    }
+}
+
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var weekCountdownLabel: UILabel!
@@ -47,14 +57,15 @@ class CalendarViewController: UIViewController {
     var weekLabels : [UILabel] = []
     var weekCaptions : [UILabel] = []
     
+    var paddedCalendar : [[Double]] = []
+    
     func weeksFrom(date : NSDate) -> Int {
         return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: NSDate(), toDate: date, options: []).weekOfYear
     }
     
-    func getDayOfWeek() -> Int {
-        let todayDate = NSDate()
+    func getDayOfWeek(today:NSDate) -> Int {
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-        let myComponents = myCalendar!.components(.Weekday, fromDate: todayDate)
+        let myComponents = myCalendar!.components(.Weekday, fromDate: today)
         let weekDay = myComponents.weekday
         return weekDay // returns a number corresponding to current week day, starting with 1 (ie, Tuesday is '3')
     }
@@ -141,6 +152,36 @@ class CalendarViewController: UIViewController {
             "Half": ["Newbie": self.halfNewbie, "Gentle": self.halfGentle, "Endurance": self.halfEndurance, "Speed": self.halfSpeed]
         ]
     }
+  
+    func buildCalendar() {
+        // Store first week as padded week array
+        var padWeek = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]![0]
+        
+        // Take current selected calendar
+        let raceSchedule = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]!
+        
+        // Flatten array
+        let flattenedRaceSchedule = raceSchedule.reduce([], combine: +)
+
+        // Calc 0-7 day of week that race falls on
+        let dayOfWeek = getDayOfWeek(self.calendarData.timeToRace) - 1
+        
+        var newCal : [Double] = []
+        
+        // Add 0-raceday to beginning of cal
+        // Add raceday-end to end of cal
+        if (dayOfWeek != 7) {
+            newCal += padWeek[0..<dayOfWeek]
+            newCal += flattenedRaceSchedule
+            newCal += padWeek.suffix((7-dayOfWeek))
+        } else {
+            newCal = flattenedRaceSchedule
+        }
+        
+        // Re-split calendar into weeks
+        self.paddedCalendar = newCal.splitBy(7)
+    }
+    
     
     func calcWeeksUntilRace() {
         // Calculate how many weeks until race
@@ -149,7 +190,9 @@ class CalendarViewController: UIViewController {
     
     func calcTotalTrainingWeeks() {
         // Calculate number of total training weeks
-        self.numTotalWeeks = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]!.count
+        //self.numTotalWeeks = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]!.count
+        
+        self.numTotalWeeks = self.paddedCalendar.count
         
         if ((self.numTotalWeeks - self.weeksFromDate) <= self.numTotalWeeks && (self.numTotalWeeks - self.weeksFromDate) > 0) {
             self.weekInSchedule = (self.numTotalWeeks - 1) - self.weeksFromDate
@@ -160,7 +203,8 @@ class CalendarViewController: UIViewController {
     
     func calcThisWeekSchedule() {
         // Get the schedule that corresponds to "this" week
-        self.currentWeek = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]![weekInSchedule]
+        // self.currentWeek = self.schedule[self.calendarData.howFar]![self.calendarData.howPro]![weekInSchedule]
+        self.currentWeek = self.paddedCalendar[weekInSchedule]
     }
     
     func setLabels() {
@@ -203,7 +247,7 @@ class CalendarViewController: UIViewController {
     
     func setTodayLabel() {
         // Show today's goal in red. Note: minus two to account for index and starting the week on Monday
-        self.weekLabels[getDayOfWeek() - 2].textColor = UIColor.redColor()
+        self.weekLabels[getDayOfWeek(NSDate()) - 2].textColor = UIColor.redColor()
     }
 
     override func viewDidLoad() {
@@ -211,10 +255,13 @@ class CalendarViewController: UIViewController {
         
         self.setTrainingSchedules()
         self.calcWeeksUntilRace()
+        self.buildCalendar()
+        
         self.calcTotalTrainingWeeks()
         self.calcThisWeekSchedule()
         self.setLabels()
         self.setTodayLabel()
+        
 
         // Do any additional setup after loading the view.
     }
