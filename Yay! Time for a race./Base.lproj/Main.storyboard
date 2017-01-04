@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,67 +20,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When is it?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s8-mv-PNT">
-                                <rect key="frame" x="258" y="85" width="84" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vzc-N7-Yoc">
-                                <rect key="frame" x="299" y="352" width="161" height="216"/>
-                            </pickerView>
-                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyH-ZH-DeP">
-                                <rect key="frame" x="140" y="352" width="146" height="216"/>
-                            </pickerView>
-                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="qkn-2s-ZDw">
-                                <rect key="frame" x="140" y="116" width="320" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="491018294.312446">
-                                    <!--2016-07-24 01:58:14 +0000-->
-                                </date>
-                                <date key="minimumDate" timeIntervalSinceReferenceDate="490960800">
-                                    <!--2016-07-23 10:00:00 +0000-->
-                                </date>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yay! Time for a race." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsq-FC-zjv">
-                                <rect key="frame" x="163" y="40" width="274" height="35"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose your destiny." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0V-FF-ue7">
-                                <rect key="frame" x="220" y="342" width="161" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28r-Zq-K5o">
-                                <rect key="frame" x="261" y="550" width="79" height="30"/>
-                                <state key="normal" title="Ready, set?"/>
-                                <connections>
-                                    <action selector="touchDownButton:" destination="BYZ-38-t0r" eventType="touchDown" id="BeD-rM-S6j"/>
-                                    <action selector="touchUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SCd-5U-n4K"/>
-                                    <segue destination="nkB-P9-fLJ" kind="custom" customClass="SegueFromLeft" customModule="Yay__Time_for_a_race_" customModuleProvider="target" id="6U4-ku-83Q"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="l0z-fn-zoR">
+                                <rect key="frame" x="140" y="31" width="540" height="560"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yay! Time for a race." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nsq-FC-zjv">
+                                        <rect key="frame" x="133" y="0.0" width="274" height="35"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="When is it?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3s8-mv-PNT">
+                                        <rect key="frame" x="228" y="39" width="84" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="qkn-2s-ZDw">
+                                        <rect key="frame" x="110" y="64" width="320" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="zgO-XR-jdk"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="491018294.312446">
+                                            <!--2016-07-24 01:58:14 +0000-->
+                                        </date>
+                                        <date key="minimumDate" timeIntervalSinceReferenceDate="490960800">
+                                            <!--2016-07-23 10:00:00 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose your destiny." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U0V-FF-ue7">
+                                        <rect key="frame" x="190" y="218" width="161" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="grw-i2-dpA">
+                                        <rect key="frame" x="110" y="243" width="320" height="100"/>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyH-ZH-DeP">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="k1e-a0-t8W"/>
+                                                    <constraint firstAttribute="width" constant="160" id="qCH-ga-pUk"/>
+                                                </constraints>
+                                            </pickerView>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzc-N7-Yoc">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="160" id="0R8-R3-1a7"/>
+                                                    <constraint firstAttribute="height" constant="100" id="hIh-7C-xaC"/>
+                                                </constraints>
+                                            </pickerView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="width" secondItem="KyH-ZH-DeP" secondAttribute="width" id="PTA-1M-NmZ"/>
+                                            <constraint firstAttribute="height" constant="100" id="TP7-ix-9q1"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28r-Zq-K5o">
+                                        <rect key="frame" x="231" y="347" width="79" height="213"/>
+                                        <state key="normal" title="Ready, set?"/>
+                                        <connections>
+                                            <action selector="touchDownButton:" destination="BYZ-38-t0r" eventType="touchDown" id="BeD-rM-S6j"/>
+                                            <action selector="touchUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SCd-5U-n4K"/>
+                                            <segue destination="nkB-P9-fLJ" kind="custom" customClass="SegueFromLeft" customModule="Yay__Time_for_a_race_" customModuleProvider="target" id="6U4-ku-83Q"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="U0V-FF-ue7" firstAttribute="firstBaseline" secondItem="qkn-2s-ZDw" secondAttribute="baseline" constant="20" id="J8R-YT-ooO"/>
+                                    <constraint firstItem="3s8-mv-PNT" firstAttribute="firstBaseline" secondItem="Nsq-FC-zjv" secondAttribute="baseline" constant="40" id="fU2-Br-uej"/>
+                                    <constraint firstAttribute="bottom" secondItem="28r-Zq-K5o" secondAttribute="bottom" constant="10" id="vp9-Hb-El8"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Nsq-FC-zjv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BBn-cO-zkp"/>
-                            <constraint firstItem="qkn-2s-ZDw" firstAttribute="top" secondItem="3s8-mv-PNT" secondAttribute="bottom" constant="10" id="Elv-IF-9tR"/>
-                            <constraint firstItem="Nsq-FC-zjv" firstAttribute="top" secondItem="LPY-Mj-Dpp" secondAttribute="bottom" constant="20" id="GNn-fZ-bOb"/>
-                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="top" secondItem="qkn-2s-ZDw" secondAttribute="bottom" constant="10" id="IO7-rz-Kvc"/>
-                            <constraint firstItem="qkn-2s-ZDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NVE-V8-88v"/>
-                            <constraint firstItem="3s8-mv-PNT" firstAttribute="top" secondItem="Nsq-FC-zjv" secondAttribute="bottom" constant="10" id="RFv-WO-2mD"/>
-                            <constraint firstItem="U0V-FF-ue7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a5Z-tn-DGM"/>
-                            <constraint firstItem="3s8-mv-PNT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aGL-d7-ZvU"/>
-                            <constraint firstItem="fAy-XH-E8q" firstAttribute="top" secondItem="28r-Zq-K5o" secondAttribute="bottom" constant="20" id="eqn-D5-dpo"/>
-                            <constraint firstItem="KyH-ZH-DeP" firstAttribute="top" secondItem="qkn-2s-ZDw" secondAttribute="bottom" constant="10" id="f2a-70-3ij"/>
-                            <constraint firstItem="U0V-FF-ue7" firstAttribute="top" secondItem="qkn-2s-ZDw" secondAttribute="bottom" constant="10" id="h0X-PG-JF0"/>
-                            <constraint firstItem="vzc-N7-Yoc" firstAttribute="leading" secondItem="KyH-ZH-DeP" secondAttribute="trailing" constant="5" id="k4W-fx-UEK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vzc-N7-Yoc" secondAttribute="trailing" id="odc-mY-uvx"/>
-                            <constraint firstItem="28r-Zq-K5o" firstAttribute="top" secondItem="U0V-FF-ue7" secondAttribute="bottom" constant="10" id="pBd-Bz-9FN"/>
-                            <constraint firstItem="28r-Zq-K5o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pLO-M4-qAL"/>
-                            <constraint firstItem="KyH-ZH-DeP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xcP-DU-FLz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="l0z-fn-zoR" secondAttribute="trailing" constant="10" id="fTA-nn-OIM"/>
+                            <constraint firstItem="l0z-fn-zoR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="kJG-UK-OeW"/>
+                            <constraint firstItem="l0z-fn-zoR" firstAttribute="top" secondItem="LPY-Mj-Dpp" secondAttribute="bottom" constant="10" id="oIn-rd-n7C"/>
+                            <constraint firstItem="fAy-XH-E8q" firstAttribute="top" secondItem="l0z-fn-zoR" secondAttribute="bottom" constant="10" id="pIs-ad-AbF"/>
                         </constraints>
                     </view>
                     <connections>
